@@ -1,0 +1,67 @@
+{
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "check": "Modal bienvenida visible en primera visita",
+      "pass": true
+    },
+    {
+      "check": "Ruta / — \"IngenieriaSAS\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /perfil — \"Perfil de la Empresa\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /phva — \"Ciclo PHVA — SG-SST\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /checklist — \"Checklist SG-SST\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /electrico — \"Riesgos Eléctricos\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /documentos — \"Gestión Documental SG-SST\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /calendario — \"Calendario de Obligaciones SST\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /autoevaluacion — \"Autoevaluación SG-SST\"",
+      "pass": true
+    },
+    {
+      "check": "Ruta /ayuda — \"Centro de Ayuda\"",
+      "pass": true
+    },
+    {
+      "check": "Toggle estándar en checklist cambia estado",
+      "pass": true
+    },
+    {
+      "check": "Help drawer abre con contenido contextual",
+      "pass": true
+    },
+    {
+      "check": "Tooltip abre al clic en icono ?",
+      "pass": true
+    },
+    {
+      "check": "Frontend alcanza backend (CORS OK)",
+      "pass": true
+    },
+    {
+      "check": "Sin errores de consola (0 encontrados)",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}
