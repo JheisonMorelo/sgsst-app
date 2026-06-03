@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
+const fs      = require('fs');
+const path    = require('path');
+const pool    = require('./db');
 
 const perfilRouter      = require('./routes/perfil');
 const completadosRouter = require('./routes/completados');
@@ -11,6 +14,24 @@ const calendarioRouter  = require('./routes/calendario');
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
+// ─── Auto-init BD al arrancar ─────────────────────────────────────────────────
+async function initDB() {
+  try {
+    const sql = fs.readFileSync(path.join(__dirname, '..', 'schema.sql'), 'utf8');
+    await pool.query(sql);
+
+    const { rows } = await pool.query('SELECT id FROM empresa WHERE id = 1');
+    if (rows.length === 0) {
+      await pool.query('INSERT INTO empresa DEFAULT VALUES');
+      console.log('✅ BD inicializada y empresa creada');
+    } else {
+      console.log('✅ BD lista (empresa id=1 existe)');
+    }
+  } catch (err) {
+    console.error('⚠️  Error inicializando BD:', err.message);
+  }
+}
+
 // ─── Middleware ───────────────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = (process.env.FRONTEND_ORIGIN || '')
   .split(',')
@@ -20,7 +41,6 @@ const ALLOWED_ORIGINS = (process.env.FRONTEND_ORIGIN || '')
 
 app.use(cors({
   origin: (origin, cb) => {
-    // Permitir requests sin origin (Postman, curl) y orígenes en la lista
     if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
     cb(new Error(`CORS bloqueado: ${origin}`));
   },
@@ -52,6 +72,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-app.listen(PORT, () => {
+// ─── Arrancar servidor + inicializar BD ──────────────────────────────────────
+app.listen(PORT, async () => {
   console.log(`🚀 SG-SST Backend corriendo en http://localhost:${PORT}`);
+  await initDB();
 });
