@@ -6,10 +6,17 @@ const pool = new Pool({
   ssl: process.env.NODE_ENV === 'production'
     ? { rejectUnauthorized: false }
     : false,
-  connectionTimeoutMillis: 5000,
+  max: 5,
+  idleTimeoutMillis: 10000,      // cerrar conexiones idle a los 10s (Render free cierra ~30s)
+  connectionTimeoutMillis: 10000,
+  keepAlive: true,
+  keepAliveInitialDelayMillis: 5000,
 });
 
-// Verificar conexión al arrancar — solo loggear, nunca matar el proceso
+pool.on('error', (err) => {
+  console.error('Pool error (reconectará en próxima query):', err.message);
+});
+
 pool.connect()
   .then(client => {
     console.log('✅ PostgreSQL conectado');
@@ -17,7 +24,6 @@ pool.connect()
   })
   .catch(err => {
     console.error('⚠️  PostgreSQL no disponible al arrancar:', err.message);
-    // No process.exit — Render health check debe poder responder
   });
 
 module.exports = pool;
