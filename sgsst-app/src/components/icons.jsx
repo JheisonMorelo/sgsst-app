@@ -11,7 +11,7 @@ import {
   ArrowUpToLine, CheckSquare, XCircle, Info,
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
-  X, ChevronLeft, ExternalLink,
+  X, ChevronLeft, ExternalLink, Menu,
 } from 'lucide-react';
 
 export const ICON_MAP = {
@@ -25,7 +25,7 @@ export const ICON_MAP = {
   ArrowUpToLine, CheckSquare, XCircle, Info,
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
-  X, ChevronLeft, ChevronRight, ExternalLink,
+  X, ChevronLeft, ChevronRight, ExternalLink, Menu,
 };
 
 export default function Icon({ name, className = 'w-4 h-4', ...props }) {
@@ -46,5 +46,5 @@ export {
   ArrowUpToLine, CheckSquare, XCircle, Info,
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
-  X, ChevronLeft, ChevronRight, ExternalLink,
+  X, ChevronLeft, ChevronRight, ExternalLink, Menu,
 };

@@ -39,8 +39,8 @@ export default function PerfilEmpresa() {
   }
 
   return (
-    <div className="p-6 max-w-2xl">
-      <h1 className="text-2xl font-bold text-slate-800 mb-1">Perfil de la Empresa</h1>
+    <div className="p-4 md:p-6 max-w-2xl mx-auto">
+      <h1 className="text-xl md:text-2xl font-bold text-slate-800 mb-1">Perfil de la Empresa</h1>
       <p className="text-slate-500 text-sm mb-6">Esta información determina qué estándares aplican según la Resolución 0312/2019.</p>
 
       <form onSubmit={handleSubmit} className="space-y-5">

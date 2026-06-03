@@ -13,7 +13,7 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-5;
+    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-4 md:p-5;
   }
   .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors cursor-pointer;
@@ -23,6 +23,13 @@
   }
   .badge {
     @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 

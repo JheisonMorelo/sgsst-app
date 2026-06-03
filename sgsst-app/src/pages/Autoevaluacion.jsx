@@ -22,13 +22,13 @@ export default function Autoevaluacion() {
   const semaforo = porcentaje <= 60 ? '#EF4444' : porcentaje <= 85 ? '#F59E0B' : '#10B981';
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">Autoevaluación SG-SST</h1>
-          <p className="text-slate-500 text-sm mt-1">Resolución 0312/2019 Art. 28 — Informe generado: {ahora}</p>
+          <h1 className="text-xl md:text-2xl font-bold text-slate-800">Autoevaluación SG-SST</h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-1">Resolución 0312/2019 Art. 28 — Informe: {ahora}</p>
         </div>
-        <div className="no-print">
+        <div className="no-print shrink-0">
           <button onClick={() => window.print()} className="btn-secondary text-sm flex items-center gap-2">
             <Printer className="w-4 h-4" /> Imprimir / PDF
           </button>

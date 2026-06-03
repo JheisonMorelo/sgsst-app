@@ -50,9 +50,9 @@ export default function Documentos() {
   const porcentaje = Math.round((conFecha / totalObligatorios) * 100);
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-5">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Gestión Documental SG-SST</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-slate-800">Gestión Documental SG-SST</h1>
         <p className="text-slate-500 text-sm mt-1">Documentos requeridos por Decreto 1072/2015 y Resolución 0312/2019</p>
       </div>
 

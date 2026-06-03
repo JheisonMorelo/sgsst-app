@@ -93,9 +93,9 @@ export default function PHVA() {
   const estandares = getEstandaresPorNivel(nivel);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Ciclo PHVA — SG-SST</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-slate-800">Ciclo PHVA — SG-SST</h1>
         <p className="text-slate-500 text-sm mt-1">
           Fundamento metodológico del Decreto 1072/2015. Haz clic en cada fase para explorarla.
         </p>
@@ -104,12 +104,12 @@ export default function PHVA() {
       {/* Rueda PHVA */}
       <div className="card">
         <div className="flex flex-col items-center">
-          <div className="relative w-72 h-72">
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72">
             <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="w-20 h-20 rounded-full bg-slate-800 flex flex-col items-center justify-center text-white text-center shadow-lg">
-                <span className="text-xs font-bold">SG-SST</span>
-                <span className="text-xs opacity-70">Mejora</span>
-                <span className="text-xs opacity-70">Continua</span>
+              <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-slate-800 flex flex-col items-center justify-center text-white text-center shadow-lg">
+                <span className="text-[10px] sm:text-xs font-bold">SG-SST</span>
+                <span className="text-[10px] sm:text-xs opacity-70">Mejora</span>
+                <span className="text-[10px] sm:text-xs opacity-70">Continua</span>
               </div>
             </div>
             {Object.entries(CICLOS).map(([key, ciclo], idx) => {
@@ -122,12 +122,12 @@ export default function PHVA() {
                 <button
                   key={key}
                   onClick={() => setActivo(activo === key ? null : key)}
-                  className={`absolute w-32 h-32 flex flex-col items-center justify-center transition-all ${positions[idx]} ${radii[idx]} ${isActive ? 'scale-105 shadow-lg z-20' : 'hover:opacity-100'}`}
+                  className={`absolute w-24 h-24 sm:w-32 sm:h-32 flex flex-col items-center justify-center transition-all ${positions[idx]} ${radii[idx]} ${isActive ? 'scale-105 shadow-lg z-20' : 'hover:opacity-100'}`}
                   style={{ backgroundColor: ciclo.color, opacity: isActive ? 1 : 0.85 }}
                 >
-                  <span className="text-white text-2xl font-extrabold">{key}</span>
-                  <span className="text-white text-xs font-medium opacity-90">{ciclo.nombre}</span>
-                  <span className="text-white text-xs opacity-80">{Math.round(porcentaje)}%</span>
+                  <span className="text-white text-xl sm:text-2xl font-extrabold">{key}</span>
+                  <span className="text-white text-[10px] sm:text-xs font-medium opacity-90">{ciclo.nombre}</span>
+                  <span className="text-white text-[10px] sm:text-xs opacity-80">{Math.round(porcentaje)}%</span>
                 </button>
               );
             })}

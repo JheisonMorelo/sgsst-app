@@ -24,9 +24,9 @@ export default function Calendario() {
   });
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-5">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Calendario de Obligaciones SST</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-slate-800">Calendario de Obligaciones SST</h1>
         <p className="text-slate-500 text-sm mt-1">Obligaciones anuales según Decreto 1072/2015 y Resolución 0312/2019</p>
       </div>
 
@@ -43,7 +43,7 @@ export default function Calendario() {
       </div>
 
       {/* Grid de meses */}
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {resumenMeses.map(({ mes, nombre, total, comp, tieneObligaciones, tieneObligatoriasLegales }) => (
           <button
             key={mes}

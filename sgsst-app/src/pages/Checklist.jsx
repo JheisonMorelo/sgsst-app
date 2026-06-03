@@ -27,9 +27,9 @@ export default function Checklist() {
   const barColor = porcentaje <= 60 ? '#EF4444' : porcentaje <= 85 ? '#F59E0B' : '#10B981';
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-5">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Checklist SG-SST</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-slate-800">Checklist SG-SST</h1>
         <p className="text-slate-500 text-sm mt-1">
           {estandares.length} estándares · Nivel {nivel} · {puntajeObtenido.toFixed(1)}/{puntajeTotal.toFixed(1)} puntos
         </p>
@@ -62,7 +62,7 @@ export default function Checklist() {
       <div className="flex flex-wrap gap-2 items-center">
         <button
           onClick={() => setFiltroCiclo('todos')}
-          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${filtroCiclo === 'todos' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+          className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${filtroCiclo === 'todos' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
         >Todos</button>
         {Object.entries(CICLOS).map(([key, c]) => (
           <button
@@ -79,14 +79,14 @@ export default function Checklist() {
         ))}
         <button
           onClick={() => setFiltroElectrico(v => !v)}
-          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${filtroElectrico ? 'bg-yellow-500 text-white' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'}`}
+          className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${filtroElectrico ? 'bg-yellow-500 text-white' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'}`}
         >
           <Zap className="w-3.5 h-3.5" /> Solo eléctrico
           <Tooltip content={TOOLTIPS.filtroElectrico} position="bottom" />
         </button>
         <button
           onClick={() => setFiltroPendiente(v => !v)}
-          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${filtroPendiente ? 'bg-red-500 text-white' : 'bg-red-100 text-red-700 hover:bg-red-200'}`}
+          className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${filtroPendiente ? 'bg-red-500 text-white' : 'bg-red-100 text-red-700 hover:bg-red-200'}`}
         >
           <AlertCircle className="w-3.5 h-3.5" /> Solo pendientes
         </button>

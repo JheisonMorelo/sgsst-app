@@ -34,19 +34,19 @@ export default function Dashboard() {
   const semaforo = porcentaje <= 60 ? '#EF4444' : porcentaje <= 85 ? '#F59E0B' : '#10B981';
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-800">
             {perfil.configurado ? perfil.nombre || 'Mi Empresa' : 'SG-SST — Ingeniería Eléctrica'}
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
-            Decreto 1072/2015 · Resolución 0312/2019 · Clase de Riesgo: <strong>{perfil.claseRiesgo}</strong> · Nivel: <strong>{nivel}</strong>
+          <p className="text-slate-500 text-xs sm:text-sm mt-1">
+            Decreto 1072/2015 · Resolución 0312/2019 · Riesgo: <strong>{perfil.claseRiesgo}</strong> · Nivel: <strong>{nivel}</strong>
           </p>
         </div>
         {!perfil.configurado && (
-          <Link to="/perfil" className="btn-primary text-sm flex items-center gap-1.5">
+          <Link to="/perfil" className="btn-primary text-sm flex items-center gap-1.5 self-start shrink-0">
             Configurar empresa <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         )}
@@ -66,20 +66,20 @@ export default function Dashboard() {
           <div className="flex-1">
             <p className={`text-xl font-bold ${cal.color}`}>{cal.label}</p>
             <p className="text-slate-600 text-sm mt-1">{cal.accion}</p>
-            <div className="mt-3 flex gap-4 text-sm">
+            <div className="mt-3 flex flex-wrap gap-3 text-sm">
               <span className="font-semibold text-slate-700">{completadosAplicables} / {totalEstandares} estándares</span>
-              <span className="text-slate-500">{puntajeObtenido.toFixed(1)} / {puntajeTotal.toFixed(1)} puntos</span>
+              <span className="text-slate-500">{puntajeObtenido.toFixed(1)} / {puntajeTotal.toFixed(1)} pts</span>
             </div>
           </div>
-          <div className="flex gap-3">
-            <Link to="/checklist" className="btn-primary text-sm">Ver checklist</Link>
-            <Link to="/autoevaluacion" className="btn-secondary text-sm">Autoevaluación</Link>
+          <div className="flex gap-2 flex-wrap w-full md:w-auto">
+            <Link to="/checklist" className="btn-primary text-sm flex-1 md:flex-none text-center">Ver checklist</Link>
+            <Link to="/autoevaluacion" className="btn-secondary text-sm flex-1 md:flex-none text-center">Autoevaluación</Link>
           </div>
         </div>
       </div>
 
       {/* Cards por ciclo PHVA */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {statsCiclo.map(s => (
           <div key={s.ciclo} className="card text-center">
             <div

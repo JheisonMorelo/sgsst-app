@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { getEstandaresPorNivel, calcularPuntaje, getCalificacion } from '../data/estandares';
 import {
   BarChart2, Building2, RefreshCw, ClipboardCheck, Zap,
-  FolderOpen, CalendarDays, ClipboardList, BookOpen,
+  FolderOpen, CalendarDays, ClipboardList, BookOpen, Menu, X,
 } from './icons';
 import HelpDrawer from './HelpDrawer';
 
@@ -23,6 +24,7 @@ const NAV_BOTTOM = [
 ];
 
 export default function Layout({ children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { perfil, nivel, completados } = useApp();
   const estandares = getEstandaresPorNivel(nivel);
   const { porcentaje } = calcularPuntaje(estandares, completados);
@@ -32,13 +34,25 @@ export default function Layout({ children }) {
     : cal.label === 'MODERADAMENTE ACEPTABLE' ? '#F59E0B'
     : '#10B981';
 
+  const closeSidebar = () => setSidebarOpen(false);
+
   return (
     <div className="flex min-h-screen">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={closeSidebar}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="no-print w-64 bg-slate-900 text-white flex flex-col shrink-0">
-        {/* Logo */}
-        <div className="p-4 border-b border-slate-700">
-          <div className="flex items-center gap-2.5 mb-1">
+      <aside className={`no-print fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white flex flex-col shrink-0 transition-transform duration-300 ease-in-out ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } lg:static lg:translate-x-0`}>
+        {/* Logo + close btn (mobile) */}
+        <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-yellow-500 flex items-center justify-center shrink-0">
               <Zap className="w-5 h-5 text-white" />
             </div>
@@ -47,10 +61,20 @@ export default function Layout({ children }) {
               <p className="text-xs text-slate-400">Ingeniería Eléctrica</p>
             </div>
           </div>
-          {perfil.configurado && (
-            <p className="text-xs text-slate-300 mt-2 truncate">{perfil.nombre || 'Mi Empresa'}</p>
-          )}
+          <button
+            onClick={closeSidebar}
+            className="lg:hidden p-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            aria-label="Cerrar menú"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
+
+        {perfil.configurado && (
+          <div className="px-4 py-2 border-b border-slate-700">
+            <p className="text-xs text-slate-300 truncate">{perfil.nombre || 'Mi Empresa'}</p>
+          </div>
+        )}
 
         {/* Progreso global */}
         <div className="p-4 border-b border-slate-700">
@@ -79,8 +103,9 @@ export default function Layout({ children }) {
               key={to}
               to={to}
               end={to === '/'}
+              onClick={closeSidebar}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white font-medium'
                     : 'text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -103,8 +128,9 @@ export default function Layout({ children }) {
             <NavLink
               key={to}
               to={to}
+              onClick={closeSidebar}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white font-medium'
                     : 'text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -123,10 +149,35 @@ export default function Layout({ children }) {
         </div>
       </aside>
 
-      {/* Main */}
-      <main className="flex-1 overflow-auto">
-        {children}
-      </main>
+      {/* Área principal */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Barra superior mobile */}
+        <header className="no-print lg:hidden sticky top-0 z-30 bg-white border-b border-slate-200 flex items-center gap-3 px-4 h-14 shrink-0">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            aria-label="Abrir menú"
+          >
+            <Menu className="w-5 h-5 text-slate-600" />
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center shrink-0">
+              <Zap className="w-4 h-4 text-white" />
+            </div>
+            <span className="font-bold text-sm text-slate-800">SG-SST</span>
+          </div>
+          <div className="ml-auto flex items-center gap-2">
+            <div className="w-14 bg-slate-200 rounded-full h-1.5">
+              <div className="h-1.5 rounded-full transition-all" style={{ width: `${porcentaje}%`, backgroundColor: barColor }} />
+            </div>
+            <span className="text-xs font-bold text-slate-600">{porcentaje.toFixed(0)}%</span>
+          </div>
+        </header>
+
+        <main className="flex-1 overflow-auto">
+          {children}
+        </main>
+      </div>
 
       {/* Help Drawer flotante */}
       <HelpDrawer />
