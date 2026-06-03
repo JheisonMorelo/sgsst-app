@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(npm run *Resolución 0312 de 2019\rDecreto 1072 de 2015)",
+      "Bash(npm run *)",
+      "Bash(mysql --version)",
+      "PowerShell(mysql *)",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:3001/api/health\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell($health = Invoke-RestMethod \"http://localhost:3001/api/health\"; Write-Host \"Health: $\\($health.status\\)\"; $perfil = Invoke-RestMethod \"http://localhost:3001/api/perfil\"; Write-Host \"Perfil: nombre=$\\($perfil.nombre\\) riesgo=$\\($perfil.claseRiesgo\\) configurado=$\\($perfil.configurado\\)\"; $comp = Invoke-RestMethod \"http://localhost:3001/api/completados\"; Write-Host \"Completados: $\\($comp.Count\\) estandares\"; $docs = Invoke-RestMethod \"http://localhost:3001/api/documentos\"; Write-Host \"Documentos: $\\($docs.PSObject.Properties.Count\\) registros\"; $cal = Invoke-RestMethod \"http://localhost:3001/api/calendario\"; Write-Host \"Calendario: $\\($cal.PSObject.Properties.Count\\) completadas\")",
+      "Bash(cd /tmp)",
+      "Bash(npm list *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Get-Process *)",
+      "Bash(npm uninstall *)"
+    ]
+  }
+}

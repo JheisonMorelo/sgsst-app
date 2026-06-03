@@ -1,0 +1,49 @@
+databases:
+  - name: sgsst-db
+    databaseName: sgsst_db
+    user: sgsst_user
+    plan: free            # 90 días gratis; luego $7/mes
+
+services:
+  # ─── Backend Node.js ────────────────────────────────────────────────────────
+  - type: web
+    name: sgsst-backend
+    runtime: node
+    plan: free            # duerme tras 15 min; $7/mes para mantener activo
+    rootDir: sgsst-backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sgsst-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_ORIGIN
+        value: https://sgsst-frontend.onrender.com  # actualizar con URL real del frontend
+
+  # ─── Frontend React (Static Site) ───────────────────────────────────────────
+  - type: web
+    name: sgsst-frontend
+    runtime: static
+    plan: free
+    rootDir: sgsst-app
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    routes:
+      # SPA: redirigir todas las rutas al index.html
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://sgsst-backend.onrender.com/api  # actualizar con URL real del backend
