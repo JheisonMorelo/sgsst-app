@@ -1,25 +1,28 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
+const dbUrl = process.env.DATABASE_URL || '';
+
+// URL interna de Render (dpg-xxx/dbname) no usa SSL
+// URL externa (dpg-xxx.oregon-postgres.render.com) sí necesita SSL
+const needsSsl = dbUrl.includes('.render.com') || dbUrl.includes('render.com');
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production'
-    ? { rejectUnauthorized: false }
-    : false,
+  connectionString: dbUrl,
+  ssl: needsSsl ? { rejectUnauthorized: false } : false,
   max: 5,
-  idleTimeoutMillis: 10000,      // cerrar conexiones idle a los 10s (Render free cierra ~30s)
+  idleTimeoutMillis: 10000,
   connectionTimeoutMillis: 10000,
   keepAlive: true,
-  keepAliveInitialDelayMillis: 5000,
 });
 
 pool.on('error', (err) => {
-  console.error('Pool error (reconectará en próxima query):', err.message);
+  console.error('Pool error:', err.message);
 });
 
 pool.connect()
   .then(client => {
-    console.log('✅ PostgreSQL conectado');
+    console.log('✅ PostgreSQL conectado (SSL:', needsSsl, ')');
     client.release();
   })
   .catch(err => {
