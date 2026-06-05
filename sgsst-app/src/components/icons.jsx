@@ -12,6 +12,7 @@ import {
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
   X, ChevronLeft, ExternalLink, Menu,
+  Ruler, User,
 } from 'lucide-react';
 
 export const ICON_MAP = {
@@ -26,6 +27,7 @@ export const ICON_MAP = {
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
   X, ChevronLeft, ChevronRight, ExternalLink, Menu,
+  Ruler, User,
 };
 
 export default function Icon({ name, className = 'w-4 h-4', ...props }) {
@@ -47,4 +49,5 @@ export {
   BookOpen, ClipboardSignature, Wrench, Stethoscope,
   Lightbulb, Users, AlertCircle, TrendingUp,
   X, ChevronLeft, ChevronRight, ExternalLink, Menu,
+  Ruler, User,
 };

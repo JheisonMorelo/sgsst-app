@@ -18,7 +18,7 @@ export const RIESGOS_ELECTRICOS = [
       { tipo: 'Administrativo', descripcion: 'Permiso de trabajo eléctrico, procedimiento de 5 pasos de seguridad eléctrica' },
       { tipo: 'EPP', descripcion: 'Guantes dieléctricos clase 00-4 según nivel de tensión (ASTM D120)' },
     ],
-    normativa: ['RETIE Art. 7', 'NTC 2050', 'NFPA 70E', 'Decreto 1072 Art. 2.2.4.6.8'],
+    normativa: ['Res. 5018/2019 Art. 5', 'RETIE Art. 7', 'NTC 2050', 'NFPA 70E', 'Decreto 1072 Art. 2.2.4.6.8'],
     periodicidadInspeccion: 'Mensual',
   },
   {
@@ -40,7 +40,7 @@ export const RIESGOS_ELECTRICOS = [
       { tipo: 'Administrativo', descripcion: 'Programa de mantenimiento preventivo de instalaciones' },
       { tipo: 'EPP', descripcion: 'Calzado dieléctrico con suela aislante certificada' },
     ],
-    normativa: ['RETIE Art. 15', 'NTC 2050 Art. 250', 'IEC 60364'],
+    normativa: ['Res. 5018/2019 Art. 11', 'RETIE Art. 15', 'NTC 2050 Art. 250', 'IEC 60364'],
     periodicidadInspeccion: 'Trimestral',
   },
   {
@@ -62,7 +62,7 @@ export const RIESGOS_ELECTRICOS = [
       { tipo: 'Administrativo', descripcion: 'Límite de acercamiento prohibido, restringido y de trabajo' },
       { tipo: 'EPP', descripcion: 'Careta de arco (mínimo categoría según estudio), ropa ignífuga (NFPA 70E Tabla 130.7)' },
     ],
-    normativa: ['NFPA 70E 2024', 'IEEE 1584-2018', 'RETIE Art. 7.7'],
+    normativa: ['Res. 5018/2019 Art. 32', 'NFPA 70E 2024', 'IEEE 1584-2018', 'RETIE Art. 7.7'],
     periodicidadInspeccion: 'Semestral (revisión de estudio de arco)',
   },
   {
@@ -84,7 +84,7 @@ export const RIESGOS_ELECTRICOS = [
       { tipo: 'Administrativo', descripcion: 'Plan de rescate en alturas documentado y practicado' },
       { tipo: 'EPP', descripcion: 'Arnés de cuerpo entero, eslinga con amortiguador, casco con barbuquejo Clase E' },
     ],
-    normativa: ['Resolución 4272 de 2021', 'Resolución 1409 de 2012', 'RETIE Art. 7.8'],
+    normativa: ['Res. 5018/2019 Art. 31', 'Resolución 4272 de 2021', 'RETIE Art. 7.8'],
     periodicidadInspeccion: 'Antes de cada trabajo',
   },
   {
